@@ -1,0 +1,23 @@
+; start main program
+	TSTO #1
+	BOV stack_overflow_error
+	ADDSP #0
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+; Beginning of main instructions:
+	WSTR "Hello World"
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+code.Object.equals:
+	RTS
+stack_overflow_error:
+	WSTR "Error: Stack Overflow"
+	WNL
+	ERROR
+; end main program

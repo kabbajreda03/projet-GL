@@ -1,0 +1,41 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [2, 10] DeclVar
+      |  ||  +> [2, 4] Identifier (int)
+      |  ||  +> [2, 8] Identifier (a)
+      |  ||  `> [2, 10] Initialization
+      |  ||     `> [2, 10] Int (5)
+      |  []> [3, 10] DeclVar
+      |      +> [3, 4] Identifier (int)
+      |      +> [3, 8] Identifier (b)
+      |      `> [3, 10] Initialization
+      |         `> [3, 10] Int (3)
+      `> ListInst [List with 2 elements]
+         []> [4, 4] IfThenElse
+         ||  +> [4, 7] And
+         ||  |  +> [4, 7] Lower
+         ||  |  |  +> [4, 7] Identifier (a)
+         ||  |  |  `> [4, 9] Int (8)
+         ||  |  `> [4, 14] Lower
+         ||  |     +> [4, 14] Identifier (b)
+         ||  |     `> [4, 16] Int (9)
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [5, 14] Print
+         ||  |      `> ListExpr [List with 1 elements]
+         ||  |         []> [5, 14] StringLiteral ("hey ")
+         ||  `> ListInst [List with 0 elements]
+         []> [8, 4] IfThenElse
+             +> [8, 7] Or
+             |  +> [8, 7] Greater
+             |  |  +> [8, 7] Identifier (a)
+             |  |  `> [8, 9] Int (8)
+             |  `> [8, 14] Lower
+             |     +> [8, 14] Identifier (b)
+             |     `> [8, 16] Int (9)
+             +> ListInst [List with 1 elements]
+             |  []> [9, 16] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [9, 16] StringLiteral ("let's go")
+             `> ListInst [List with 0 elements]

@@ -1,0 +1,3 @@
+{
+    #include "circularInclude_test.deca";
+}

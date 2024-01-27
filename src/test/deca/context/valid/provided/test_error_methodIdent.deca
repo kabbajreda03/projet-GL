@@ -1,0 +1,11 @@
+class A{
+    int x;
+    int getA(){
+        return x;
+    }
+}
+
+{
+    A a = new A();
+    
+}

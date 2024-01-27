@@ -1,0 +1,73 @@
+class AnimalLait{
+    protected int rangAnimal;
+    float poid;
+    float taille;
+
+    int getRangAnimal(){
+        return rangAnimal;
+    }
+
+    void setVolumeLait(int lait){
+    }
+
+    int getVolumeLaitParJours(){
+    }
+
+    void Talk(){
+    }
+    
+}
+
+
+class Vache extends AnimalLait{
+    int volumeLaitParJours;
+
+
+    int getVolumeLaitParJours(){
+        return volumeLaitParJours;
+    }
+
+    void setVolumeLait(int lait){
+        this.volumeLaitParJours=lait;
+    }
+
+    void Talk(){
+        println("MMMMMMM,Je suis une vache qui fait ",volumeLaitParJours," litre de lait");
+    }
+}
+
+
+class Chevre extends AnimalLait{
+    int volumeLaitParJours;
+
+
+    int getVolumeLaitParJours(){
+        return volumeLaitParJours;
+    }
+
+    void setVolumeLait(int lait){
+        this.volumeLaitParJours=lait;
+    }
+
+    void Talk(){
+        println("MEEEIINH , Je suis une chevre qui fait ",volumeLaitParJours," litre de lait");
+    }
+}
+
+
+
+
+{
+    AnimalLait an = new Vache();
+    AnimalLait an2 =  new Chevre();
+    an2.setVolumeLait(200);
+    an.setVolumeLait(100);
+    an.Talk();
+    an2.Talk();
+    if(an.getVolumeLaitParJours() > an2.getVolumeLaitParJours()){
+        println("Vache fait plus que Chevre de lait");
+    }
+    else{
+        println("Chevre fait plus que Vache de lait");
+    }
+}

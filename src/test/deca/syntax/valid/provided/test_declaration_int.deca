@@ -1,0 +1,11 @@
+// Tester la declaration des int 
+// Verifier : "definition : variable defined at [<lig>,<col>] , type = <type>"
+
+{
+    int a;              // lig:5 col:8 type: int
+
+    int b=5;
+
+    a=b;
+
+}

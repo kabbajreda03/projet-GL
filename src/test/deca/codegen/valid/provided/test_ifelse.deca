@@ -1,0 +1,19 @@
+// Tester l'implmentation de ifelse
+{
+    boolean deca = false;
+    int i=0;
+    int a;
+    while(i<2){
+        if(!deca){
+        print("Here is your coffee Sir / ");
+        deca = true;
+        }
+        else{
+        println("Here is your decaf coffee Sir as you like it");
+        }
+
+    i=i+1;
+    
+    }
+
+}

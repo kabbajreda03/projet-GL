@@ -1,0 +1,10 @@
+// Tester l'implmentation de la boucle while
+
+{
+    int a=0;
+    while(a<10){
+        a=a+1;
+    }
+    println(a);
+
+}

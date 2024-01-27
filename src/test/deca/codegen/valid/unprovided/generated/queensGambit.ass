@@ -1,0 +1,217 @@
+; start main program
+	TSTO #12
+	BOV stack_overflow_error
+	ADDSP #10
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of Royality method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+; construction of King method
+	LEA 3(GB), R0
+	STORE R0, 5(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 6(GB)
+; construction of Queen method
+	LEA 3(GB), R0
+	STORE R0, 7(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 8(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	NEW #3, R2
+	BOV full_stack
+	LEA 5(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.King
+	POP R2
+	STORE R2, 9(GB)
+	NEW #2, R2
+	BOV full_stack
+	LEA 7(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Queen
+	POP R2
+	STORE R2, 10(GB)
+; Beginning of main instructions:
+	LOAD 10(GB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	LEA 7(GB), R2
+init_instanceof_0:
+	LOAD 0(R3), R3
+	CMP 1(GB), R3
+	BEQ false_instanceof_0
+	CMP R3, R2
+	BEQ true_instanceof_0
+	BRA init_instanceof_0
+true_instanceof_0:
+	LOAD #1, R2
+	BRA end_Instanceof_0
+false_instanceof_0:
+	LOAD #0, R2
+end_Instanceof_0:
+	CMP #0, R2
+	BEQ else_branch_0
+if_branch_0:
+	WSTR "A queen is a queen"
+	WNL
+	BRA end_of_if_0
+else_branch_0:
+end_of_if_0:
+	LOAD 9(GB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	LEA 5(GB), R2
+init_instanceof_1:
+	LOAD 0(R3), R3
+	CMP 1(GB), R3
+	BEQ false_instanceof_1
+	CMP R3, R2
+	BEQ true_instanceof_1
+	BRA init_instanceof_1
+true_instanceof_1:
+	LOAD #1, R2
+	BRA end_Instanceof_1
+false_instanceof_1:
+	LOAD #0, R2
+end_Instanceof_1:
+	CMP #0, R2
+	BEQ else_branch_1
+if_branch_1:
+	WSTR "A king is a king"
+	WNL
+	BRA end_of_if_1
+else_branch_1:
+end_of_if_1:
+	LOAD 10(GB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	LEA 3(GB), R2
+init_instanceof_2:
+	LOAD 0(R3), R3
+	CMP 1(GB), R3
+	BEQ false_instanceof_2
+	CMP R3, R2
+	BEQ true_instanceof_2
+	BRA init_instanceof_2
+true_instanceof_2:
+	LOAD #1, R2
+	BRA end_Instanceof_2
+false_instanceof_2:
+	LOAD #0, R2
+end_Instanceof_2:
+	CMP #0, R2
+	BEQ end_and_0
+	LOAD 10(GB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	LEA 3(GB), R2
+init_instanceof_3:
+	LOAD 0(R3), R3
+	CMP 1(GB), R3
+	BEQ false_instanceof_3
+	CMP R3, R2
+	BEQ true_instanceof_3
+	BRA init_instanceof_3
+true_instanceof_3:
+	LOAD #1, R2
+	BRA end_Instanceof_3
+false_instanceof_3:
+	LOAD #0, R2
+end_Instanceof_3:
+	CMP #0, R2
+	BEQ is_false_0
+is_true_0:
+	LOAD #1, R2
+	BRA end_and_0
+is_false_0:
+	LOAD #0, R2
+	BRA end_and_0
+end_and_0:
+	CMP #0, R2
+	BEQ else_branch_2
+if_branch_2:
+	WSTR "They both are Royality"
+	BRA end_of_if_2
+else_branch_2:
+end_of_if_2:
+	WNL
+	WSTR "this is the king's power in hex "
+	LOAD 9(GB), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 1(R2), R2
+	LOAD R2, R1
+	WFLOATX
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize Royality's fields
+init.Royality:
+	TSTO #0
+	BOV stack_overflow_error
+	LOAD #0x1.5798eep-27, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	RTS
+; Initialize King's fields
+init.King:
+	TSTO #4
+	BOV stack_overflow_error
+	LOAD #null, R0
+	LOAD -2(LB), R1
+	STORE R0, 2(R1)
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.Royality
+	SUBSP #1
+	NEW #2, R1
+	BOV full_stack
+	LEA 7(GB), R0
+	STORE R0, 0(R1)
+	PUSH R1
+	BSR init.Queen
+	POP R1
+	LOAD -2(LB), R1
+	STORE R1, 2(R1)
+	RTS
+; Initialize Queen's fields
+init.Queen:
+	TSTO #3
+	BOV stack_overflow_error
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.Royality
+	SUBSP #1
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+dereferencing.null:
+	WSTR """Error: dereferencing null"""
+	WNL
+	ERROR
+full_stack:
+	WSTR """Error : The Stack is Full"""
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

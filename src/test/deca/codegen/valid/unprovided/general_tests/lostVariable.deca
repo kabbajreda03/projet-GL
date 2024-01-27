@@ -1,0 +1,25 @@
+class Founded{
+	protected int treasure = 777;
+	
+	int getTreasure(){
+		return treasure;
+		while(true){
+			treasure = -42;
+		}
+	}
+}
+
+class Close extends Founded {
+	int dust;
+	float dustF;
+	
+	int getter(){
+		return getTreasure();
+		return dust;
+	}
+}
+
+{
+	Close close = new Close();
+	print(close.getter());
+}

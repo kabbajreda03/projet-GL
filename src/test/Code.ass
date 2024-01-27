@@ -1,0 +1,325 @@
+; start main program
+	TSTO #26
+	BOV stack_overflow_error
+	ADDSP #22
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of AnimalLait method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.AnimalLait.getRangAnimal, R0
+	STORE R0, 5(GB)
+	LOAD code.AnimalLait.setVolumeLait, R0
+	STORE R0, 6(GB)
+	LOAD code.AnimalLait.getVolumeLaitParJours, R0
+	STORE R0, 7(GB)
+	LOAD code.AnimalLait.Talk, R0
+	STORE R0, 8(GB)
+; construction of Vache method
+	LEA 3(GB), R0
+	STORE R0, 9(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 10(GB)
+	LOAD code.AnimalLait.getRangAnimal, R0
+	STORE R0, 11(GB)
+	LOAD code.Vache.setVolumeLait, R0
+	STORE R0, 12(GB)
+	LOAD code.Vache.getVolumeLaitParJours, R0
+	STORE R0, 13(GB)
+	LOAD code.Vache.Talk, R0
+	STORE R0, 14(GB)
+; construction of Chevre method
+	LEA 3(GB), R0
+	STORE R0, 15(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 16(GB)
+	LOAD code.AnimalLait.getRangAnimal, R0
+	STORE R0, 17(GB)
+	LOAD code.Chevre.setVolumeLait, R0
+	STORE R0, 18(GB)
+	LOAD code.Chevre.getVolumeLaitParJours, R0
+	STORE R0, 19(GB)
+	LOAD code.Chevre.Talk, R0
+	STORE R0, 20(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	NEW #5, R2
+	BOV full_stack
+	LEA 9(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Vache
+	POP R2
+	STORE R2, 21(GB)
+	NEW #5, R2
+	BOV full_stack
+	LEA 15(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Chevre
+	POP R2
+	STORE R2, 22(GB)
+; Beginning of main instructions:
+; Call Method setVolumeLait
+	ADDSP #2
+	LOAD 22(GB), R2
+	STORE R2, 0(SP)
+	LOAD #200, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #2
+; Call Method setVolumeLait
+	ADDSP #2
+	LOAD 21(GB), R2
+	STORE R2, 0(SP)
+	LOAD #100, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #2
+; Call Method Talk
+	ADDSP #1
+	LOAD 21(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 5(R2)
+	SUBSP #1
+; Call Method Talk
+	ADDSP #1
+	LOAD 22(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 5(R2)
+	SUBSP #1
+; Call Method getVolumeLaitParJours
+	ADDSP #1
+	LOAD 21(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 4(R2)
+	SUBSP #1
+	LOAD R0, R2
+; Call Method getVolumeLaitParJours
+	ADDSP #1
+	LOAD 22(GB), R3
+	STORE R3, 0(SP)
+	LOAD 0(SP), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	LOAD 0(R3), R3
+	BSR 4(R3)
+	SUBSP #1
+	LOAD R0, R3
+	CMP R3, R2
+	SGT R2
+	CMP #0, R2
+	BEQ else_branch_0
+if_branch_0:
+	WSTR "Vache fait plus que Chevre de lait"
+	WNL
+	BRA end_of_if_0
+else_branch_0:
+	WSTR "Chevre fait plus que Vache de lait"
+	WNL
+end_of_if_0:
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize AnimalLait's fields
+init.AnimalLait:
+	TSTO #0
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	FLOAT #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 2(R1)
+	FLOAT #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 3(R1)
+	RTS
+; Initialize Vache's fields
+init.Vache:
+	TSTO #3
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 4(R1)
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.AnimalLait
+	SUBSP #1
+	RTS
+; Initialize Chevre's fields
+init.Chevre:
+	TSTO #2
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 4(R1)
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.AnimalLait
+	SUBSP #1
+	RTS
+code.AnimalLait.getRangAnimal:
+	TSTO #1
+	BOV stack_overflow_error
+	PUSH R2
+	LOAD -2(LB), R2
+	LOAD 1(R2), R2
+	LOAD R2, R0
+	BRA end.AnimalLait.getRangAnimal
+	WSTR """Error: exit from method AnimalLait.getRangAnimal without return."""
+	WNL
+	ERROR
+end.AnimalLait.getRangAnimal:
+	POP R2
+	RTS
+code.AnimalLait.setVolumeLait:
+	TSTO #0
+	BOV stack_overflow_error
+end.AnimalLait.setVolumeLait:
+	RTS
+code.AnimalLait.getVolumeLaitParJours:
+	TSTO #0
+	BOV stack_overflow_error
+	WSTR """Error: exit from method AnimalLait.getVolumeLaitParJours without return."""
+	WNL
+	ERROR
+end.AnimalLait.getVolumeLaitParJours:
+	RTS
+code.AnimalLait.Talk:
+	TSTO #0
+	BOV stack_overflow_error
+end.AnimalLait.Talk:
+	RTS
+code.Vache.getVolumeLaitParJours:
+	TSTO #1
+	BOV stack_overflow_error
+	PUSH R2
+	LOAD -2(LB), R2
+	LOAD 4(R2), R2
+	LOAD R2, R0
+	BRA end.Vache.getVolumeLaitParJours
+	WSTR """Error: exit from method Vache.getVolumeLaitParJours without return."""
+	WNL
+	ERROR
+end.Vache.getVolumeLaitParJours:
+	POP R2
+	RTS
+code.Vache.setVolumeLait:
+	TSTO #2
+	BOV stack_overflow_error
+	PUSH R2
+	PUSH R3
+	LOAD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	STORE R2, 4(R3)
+end.Vache.setVolumeLait:
+	POP R3
+	POP R2
+	RTS
+code.Vache.Talk:
+	TSTO #1
+	BOV stack_overflow_error
+	PUSH R2
+	WSTR "MMMMMMM,Je suis une vache qui fait "
+	LOAD -2(LB), R2
+	LOAD 4(R2), R2
+	LOAD R2, R1
+	WINT
+	WSTR " litre de lait"
+	WNL
+end.Vache.Talk:
+	POP R2
+	RTS
+code.Chevre.getVolumeLaitParJours:
+	TSTO #1
+	BOV stack_overflow_error
+	PUSH R2
+	LOAD -2(LB), R2
+	LOAD 4(R2), R2
+	LOAD R2, R0
+	BRA end.Chevre.getVolumeLaitParJours
+	WSTR """Error: exit from method Chevre.getVolumeLaitParJours without return."""
+	WNL
+	ERROR
+end.Chevre.getVolumeLaitParJours:
+	POP R2
+	RTS
+code.Chevre.setVolumeLait:
+	TSTO #2
+	BOV stack_overflow_error
+	PUSH R2
+	PUSH R3
+	LOAD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	STORE R2, 4(R3)
+end.Chevre.setVolumeLait:
+	POP R3
+	POP R2
+	RTS
+code.Chevre.Talk:
+	TSTO #1
+	BOV stack_overflow_error
+	PUSH R2
+	WSTR "MEEEIINH , Je suis une chevre qui fait "
+	LOAD -2(LB), R2
+	LOAD 4(R2), R2
+	LOAD R2, R1
+	WINT
+	WSTR " litre de lait"
+	WNL
+end.Chevre.Talk:
+	POP R2
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+dereferencing.null:
+	WSTR """Error: dereferencing null"""
+	WNL
+	ERROR
+full_stack:
+	WSTR """Error : The Stack is Full"""
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

@@ -1,0 +1,26 @@
+; start main program
+	TSTO #3
+	BOV stack_overflow_error
+	ADDSP #2
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	LOAD #42, R2
+	STORE R2, 1(GB)
+	LOAD #0x1.5p5, R2
+	STORE R2, 2(GB)
+; Beginning of main instructions:
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+code.Object.equals:
+	RTS
+stack_overflow_error:
+	WSTR "Error: Stack Overflow"
+	WNL
+	ERROR
+; end main program

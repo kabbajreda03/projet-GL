@@ -1,0 +1,73 @@
+Timestamp: 2024-01-24 19H17min48s
+
+bigWhile1 performances are :
+real	0m2,697s
+bigWhile1 optimized performances are :
+real	0m2,062s
+
+
+bigWhile2 performances are :
+real	0m26,259s
+bigWhile2 optimized performances are :
+real	0m20,935s
+
+
+bigWhile3 performances are :
+real	4m26,950s
+bigWhile3 optimized performances are :
+real	3m16,002s
+
+
+bigWhile4 performances are :
+Timestamp: 2024-01-25 00H28min16s
+
+bigWhile1 performances are :
+real	0m2,569s
+bigWhile1 optimized performances are :
+real	0m1,943s
+
+
+bigWhile2 performances are :
+Timestamp: 2024-01-25 00H32min32s
+
+bigWhile1 performances are :
+real	0m2,512s
+bigWhile1 optimized performances are :
+real	0m1,982s
+
+
+bigWhile2 performances are :
+real	0m25,107s
+bigWhile2 optimized performances are :
+real	0m19,225s
+
+
+bigWhile3 performances are :
+real	4m2,704s
+bigWhile3 optimized performances are :
+real	3m6,298s
+
+
+bigWhile4 performances are :
+real	40m21,982s
+bigWhile4 optimized performances are :
+real	30m59,394s
+
+
+e3 performances are :
+real	0m0,003s
+e3 optimized performances are :
+real	0m0,003s
+
+
+iCantMath performances are :
+real	0m18,258s
+iCantMath optimized performances are :
+real	0m13,316s
+
+
+lostVariable performances are :
+real	0m2,543s
+lostVariable optimized performances are :
+real	0m0,003s
+

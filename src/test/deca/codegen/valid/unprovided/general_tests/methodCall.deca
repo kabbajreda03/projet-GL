@@ -1,0 +1,11 @@
+class Batman {
+    void talk( int a, int b){
+        println("I am batman");
+    }
+}
+
+
+{
+    Batman batman = new Batman();
+    batman.talk(1, 1);
+}

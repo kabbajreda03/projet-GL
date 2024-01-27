@@ -1,0 +1,4 @@
+{
+    // Tester avec des [] a la place de {}
+    if[];
+}

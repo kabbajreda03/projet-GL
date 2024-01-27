@@ -1,0 +1,21 @@
+// Tester la decompilation de ifthenelse
+{
+    int a = 7;
+    int b=a/7;
+    if(a<10)
+    {
+        println("Failed");
+    }
+    else if(a>10){
+        println("PAssed");
+    }
+
+    if(a<8 && b>2){
+        println("yes");
+    }
+    else{
+        if(a>2 || b<2){
+            println("No");
+        }
+    }
+}

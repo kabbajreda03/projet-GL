@@ -1,0 +1,15 @@
+
+
+class A {
+    A m() {
+        ; // commenter cette ligne et compiler avec decac -p 
+	  // pour voir apparaître autre chose
+	return this; 
+    }
+    int x;
+}
+
+{
+    A a = new A();
+    print(a.m().x);
+}

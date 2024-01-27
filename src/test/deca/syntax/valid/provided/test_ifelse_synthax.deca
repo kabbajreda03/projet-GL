@@ -1,0 +1,11 @@
+{
+    int a;
+    if(a){
+        println("hello");
+    }
+    else{
+        if(!a){
+            println("Bye");
+        }
+    }
+}

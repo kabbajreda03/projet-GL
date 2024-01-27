@@ -1,0 +1,6 @@
+// Tester la decompilation de l'initialization de variables
+{
+    int a=5;
+    float f=0.3;
+    boolean b = true;
+}

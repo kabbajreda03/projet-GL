@@ -1,0 +1,54 @@
+class A {
+   protected int x ;
+   int getX() {
+      return x ;
+   }
+   void setX(int x) {
+      this.x = x ;
+   }
+
+   int Square(){
+    return x*x;
+   }
+
+   int WhoAmI(){
+    return 5;
+   }
+
+}
+
+class B extends A{
+    protected int y;
+
+    void setY(int y) {
+        this.y = y;
+    }
+    // Override
+    int Square(){
+        return y*y;
+    }
+
+    int WhoAmI(){
+        return 5;
+    }
+
+}
+
+
+{
+    A a = new A();
+    B b = new B();
+
+    a.setX(1);
+    b.setY(3);
+    // test function call
+    print(a.Square()); // = 1
+    // test overriden function call
+    print(b.Square()); // = 9
+    // test overloaded function call
+    print(b.Square()); // = 9
+    // test inherited function call
+    println(b.WhoAmI()); // = 5
+
+    
+}

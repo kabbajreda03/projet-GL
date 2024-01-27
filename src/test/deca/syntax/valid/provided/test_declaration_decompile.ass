@@ -1,0 +1,12 @@
+; start main program
+	TSTO #4
+	BOV stack_overflow_error
+	ADDSP #3
+; Main program
+; Beginning of main instructions:
+	HALT
+stack_overflow_error:
+	WSTR "Error: Stack Overflow"
+	WNL
+	ERROR
+; end main program

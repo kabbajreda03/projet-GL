@@ -1,0 +1,156 @@
+; start main program
+	TSTO #13
+	BOV stack_overflow_error
+	ADDSP #10
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of Founded method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Founded.getTreasure, R0
+	STORE R0, 5(GB)
+; construction of Close method
+	LEA 3(GB), R0
+	STORE R0, 6(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 7(GB)
+	LOAD code.Founded.getTreasure, R0
+	STORE R0, 8(GB)
+	LOAD code.Close.getter, R0
+	STORE R0, 9(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	NEW #4, R2
+	BOV full_stack
+	LEA 6(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Close
+	POP R2
+	STORE R2, 10(GB)
+; Beginning of main instructions:
+; Call Method getter
+	ADDSP #1
+	LOAD 10(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 3(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R1
+	WINT
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize Founded's fields
+init.Founded:
+	TSTO #0
+	BOV stack_overflow_error
+	LOAD #777, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	RTS
+; Initialize Close's fields
+init.Close:
+	TSTO #3
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 2(R1)
+	FLOAT #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 3(R1)
+	LOAD -2(LB), R1
+	PUSH R1
+	BSR init.Founded
+	SUBSP #1
+	RTS
+code.Founded.getTreasure:
+	TSTO #3
+	BOV stack_overflow_error
+	PUSH R2
+	PUSH R3
+	PUSH R4
+	LOAD -2(LB), R2
+	LOAD 1(R2), R2
+	LOAD R2, R0
+	BRA end.Founded.getTreasure
+while_0:
+	LOAD #1, R3
+	CMP #0, R3
+	BEQ end_of_while_0
+	OPP #42, R3
+	LOAD -2(LB), R4
+	CMP #null, R4
+	BEQ dereferencing.null
+	STORE R3, 1(R4)
+	BRA while_0
+end_of_while_0:
+	WSTR """Error: exit from method Founded.getTreasure without return."""
+	WNL
+	ERROR
+end.Founded.getTreasure:
+	POP R4
+	POP R3
+	POP R2
+	RTS
+code.Close.getter:
+	TSTO #5
+	BOV stack_overflow_error
+	PUSH R2
+	PUSH R3
+; Call Method getTreasure
+	ADDSP #1
+	LOAD -2(LB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #1
+	LOAD R0, R2
+	LOAD R2, R0
+	BRA end.Close.getter
+	LOAD -2(LB), R3
+	LOAD 2(R3), R3
+	LOAD R3, R0
+	BRA end.Close.getter
+	WSTR """Error: exit from method Close.getter without return."""
+	WNL
+	ERROR
+end.Close.getter:
+	POP R3
+	POP R2
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+dereferencing.null:
+	WSTR """Error: dereferencing null"""
+	WNL
+	ERROR
+full_stack:
+	WSTR """Error : The Stack is Full"""
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

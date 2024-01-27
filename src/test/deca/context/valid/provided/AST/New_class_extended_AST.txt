@@ -1,0 +1,11 @@
++> ListDeclVar [List with 1 elements]
+      |  []> [5, 11] DeclVar
+      |      +> [5, 4] Identifier (A)
+      |      |  definition: type defined at [1, 6], type=B
+      |      +> [5, 6] Identifier (a)
+      |      |  definition: variable defined at [5, 6], type=B
+      |      `> [5, 11] Initialization
+      |         `> [5, 11] New
+      |            type: A
+      |            +> [5, 15] Identifier (A)
+      |            |  definition: type defined at [1, 6], type=A

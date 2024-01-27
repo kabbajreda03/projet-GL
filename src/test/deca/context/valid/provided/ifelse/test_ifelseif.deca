@@ -1,0 +1,12 @@
+{
+    boolean flag = true;
+
+    if(flag){
+        println("Hey");
+    }
+    else{
+        if(!flag){
+            println("Not Hey");
+        }
+    }
+}

@@ -1,0 +1,39 @@
+DEBUG fr.ensimag.deca.tree.Program.verifyProgram(Program.java:43) - verify program: start
+DEBUG fr.ensimag.deca.tree.ListDeclClass.verifyListClass(ListDeclClass.java:34) - verify listClass: start
+DEBUG fr.ensimag.deca.tree.DeclClass.verifyClass(DeclClass.java:62) - verify verifyClass: start
+DEBUG fr.ensimag.deca.tree.DeclClass.verifyClass(DeclClass.java:78) - verify verifyClass: end
+DEBUG fr.ensimag.deca.tree.ListDeclClass.verifyListClass(ListDeclClass.java:39) - verify listClass: end
+DEBUG fr.ensimag.deca.tree.ListDeclClass.verifyListClassMembers(ListDeclClass.java:46) - verify listClassMembers: start
+DEBUG fr.ensimag.deca.tree.DeclClass.verifyClassMembers(DeclClass.java:85) - verify verifyClassMembers: start
+DEBUG fr.ensimag.deca.tree.DeclClass.verifyClassMembers(DeclClass.java:110) - verify verifyClassMembers: end
+DEBUG fr.ensimag.deca.tree.ListDeclClass.verifyListClassMembers(ListDeclClass.java:50) - verify listClassMembers: end
+DEBUG fr.ensimag.deca.tree.Program.verifyProgram(Program.java:52) - verify program: end
+`> [1, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [1, 0] DeclClass
+   |      +> [1, 0] Identifier (A)
+   |      |  definition: type defined at [1, 0], type=A
+   |      +> [builtin] Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [2, 17] [visibility = PROTECTED] DeclField
+   |      |      definition: field defined at [2, 17], type=int
+   |      |      +> [2, 13] Identifier (int)
+   |      |      |  definition: type (builtin), type=int
+   |      |      +> [2, 17] Identifier (x)
+   |      |      |  definition: field defined at [2, 17], type=int
+   |      |      `> NoInitialization
+   |      +> ListDeclMethod [List with 1 elements]
+   |      |  []> [3, 7] DeclMethod
+   |      |      +> [3, 3] Identifier (int)
+   |      |      |  definition: type (builtin), type=int
+   |      |      +> [3, 7] Identifier (getX)
+   |      |      |  definition: method defined at [3, 7], type=int
+   |      |      +> ListDeclParam [List with 0 elements]
+   |      |      `> [3, 7] MethodBody
+   |      |         +> ListDeclVar [List with 0 elements]
+   |      |         `> ListInst [List with 1 elements]
+   |      |            []> [4, 6] Return
+   |      |                `> [4, 13] Identifier (x)
+   |      |                   definition: field defined at [2, 17], type=int
+   `> EmptyMain

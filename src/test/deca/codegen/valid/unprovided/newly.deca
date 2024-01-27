@@ -1,0 +1,8 @@
+/**
+* this test will be added to the mvn verify tests once part B is implemented for new
+*/
+
+class New{}
+{
+    New newly = new New();
+}

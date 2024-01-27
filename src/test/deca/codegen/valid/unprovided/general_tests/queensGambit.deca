@@ -1,0 +1,29 @@
+class Royality{
+	float power = 0.00000001;
+}
+
+class King extends Royality{
+	Queen queen = new Queen();
+}
+
+class Queen extends Royality{
+}
+
+{
+	King king = new King();
+	Queen queen = new Queen();
+	
+	if(queen instanceof Queen){
+		println("A queen is a queen");
+	}
+	if(king instanceof King){
+		println("A king is a king");
+	}
+	if(queen instanceof Royality && queen instanceof Royality){
+		print("They both are Royality");
+	}
+	
+	println();
+	printx("this is the king's power in hex ", king.power);
+	
+}

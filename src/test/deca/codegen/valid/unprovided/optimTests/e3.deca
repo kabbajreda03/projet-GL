@@ -1,0 +1,41 @@
+{
+    int     x       =       0;
+    int     y       =       0;
+    int     z       =       0;
+    int     num     =       100000000;
+    int     power   =       1
+
+    boolean b = true;
+
+    if(false){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else if(1655*445*1*5/1/4/4 == -1){}
+    else{
+        while(x<num){
+            if(false){}
+            else if(false){}
+            else if(51 * 62 * 32 < 0){}
+            else if(51 * 62 * 32 < 0){}
+            else if(51 * 62 * 32 < 0){}
+            else{
+                x  = x + 1;
+                while(y < num){
+                    y = y + 1;
+                    while(z < num){
+                        z = z + 1;
+                        power = power * 2;
+                    }
+                }
+            }
+        }
+    }
+
+    print(x,y,z);
+
+}

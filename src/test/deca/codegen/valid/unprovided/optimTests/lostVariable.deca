@@ -1,0 +1,28 @@
+class Founded{
+	protected int treasure = 777;
+	
+	int getTreasure(){
+		return treasure;
+		while(true){
+			treasure = -42;
+		}
+	}
+}
+
+class Close extends Founded {
+	int dust = 1;
+	float dustF = 0;
+	
+	int getter(int x){
+        while(x < 1000000){
+            x = x + 1;
+            dust = dust * 2;
+        }
+		return getTreasure();
+	}
+}
+
+{
+	Close close = new Close();
+	close.getter(1);
+}

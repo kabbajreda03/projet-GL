@@ -1,0 +1,198 @@
+; start main program
+	TSTO #15
+	BOV stack_overflow_error
+	ADDSP #11
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of Point2D method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Point2D.diag, R0
+	STORE R0, 5(GB)
+; construction of Point3D method
+	LEA 3(GB), R0
+	STORE R0, 6(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 7(GB)
+	LOAD code.Point3D.diag, R0
+	STORE R0, 8(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+; Beginning of main instructions:
+	NEW #3, R2
+	BOV full_stack
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Point2D
+	POP R2
+	STORE R2, 9(GB)
+; Call Method diag
+	ADDSP #2
+	LOAD 9(GB), R2
+	STORE R2, 0(SP)
+	LOAD #1, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	NEW #4, R2
+	BOV full_stack
+	LEA 6(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Point3D
+	POP R2
+	STORE R2, 11(GB)
+; Call Method diag
+	ADDSP #2
+	LOAD 11(GB), R2
+	STORE R2, 0(SP)
+	LOAD #2, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	LOAD 11(GB), R2
+	STORE R2, 10(GB)
+; Call Method diag
+	ADDSP #2
+	LOAD 10(GB), R2
+	STORE R2, 0(SP)
+	LOAD #3, R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #2
+	WSTR "p3.z = "
+	LOAD 11(GB), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 3(R2), R2
+	LOAD R2, R1
+	WINT
+	WNL
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize Point2D's fields
+init.Point2D:
+	TSTO #0
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 2(R1)
+	RTS
+; Initialize Point3D's fields
+init.Point3D:
+	TSTO #2
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 3(R1)
+	BSR init.Point2D
+	SUBSP #1
+	RTS
+code.Point2D.diag:
+	TSTO #2
+	BOV stack_overflow_error
+	PUSH R2
+	PUSH R3
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 1(R2), R2
+	ADD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	STORE R2, 1(R3)
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 2(R2), R2
+	ADD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	STORE R2, 2(R3)
+end.Point2D.diag:
+	POP R3
+	POP R2
+	RTS
+code.Point3D.diag:
+	TSTO #2
+	BOV stack_overflow_error
+	PUSH R2
+	PUSH R3
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 1(R2), R2
+	ADD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	STORE R2, 1(R3)
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 2(R2), R2
+	ADD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	STORE R2, 2(R3)
+	LOAD -2(LB), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 3(R2), R2
+	ADD -3(LB), R2
+	LOAD -2(LB), R3
+	CMP #null, R3
+	BEQ dereferencing.null
+	STORE R2, 3(R3)
+end.Point3D.diag:
+	POP R3
+	POP R2
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+dereferencing.null:
+	WSTR """Error: dereferencing null"""
+	WNL
+	ERROR
+full_stack:
+	WSTR """Error : The Stack is Full"""
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

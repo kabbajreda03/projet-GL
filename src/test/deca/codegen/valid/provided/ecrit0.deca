@@ -1,0 +1,23 @@
+{
+
+        // Initial value
+        int counter = 6;
+
+        // Using a while loop to print numbers from 1 to 5
+        println("Numbers from 1 to 5 using a while loop:");
+
+        if (counter <= 5) {
+          counter = 1; 
+        } else {
+          counter = 2;
+        }
+        
+        counter = counter +1;
+        println(counter);
+
+        // Display a message after the loop
+        println("Loop completed!");
+        
+}
+
+

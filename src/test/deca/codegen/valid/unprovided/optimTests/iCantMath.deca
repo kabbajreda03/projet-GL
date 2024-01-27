@@ -1,0 +1,22 @@
+class GoodLife{
+    int luckyNumber =  ((50 * 3) - (10 + 5) + (2 * 8) * 2) + ((9 / 3) * 111) - ((20 * 2) / 4) + ((15 * 4) + (60 / 2) - (5 * 2) * 2) - (9 / 3) + 1 + 219;
+
+}
+
+{
+    int i = (1+11+1+1+1+1+1+1+11+1+1+1+11+1+1+1+1+11+1+1+1+1)*0;
+    int j = i;
+    int power = 1;
+    GoodLife me = new GoodLife();
+
+    while(i < 1000){
+        i = i + 1;
+        while(j < 10000000){
+            j = j + 1;
+            power = power * 4;
+        }
+
+        me = new GoodLife();
+    }
+
+}

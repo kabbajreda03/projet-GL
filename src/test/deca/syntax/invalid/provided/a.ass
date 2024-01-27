@@ -1,0 +1,91 @@
+; start main program
+	TSTO #9
+	BOV stack_overflow_error
+	ADDSP #6
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of A method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.A.m, R0
+	STORE R0, 5(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	NEW #2, R2
+	BOV full_stack
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.A
+	POP R2
+	STORE R2, 6(GB)
+; Beginning of main instructions:
+; Call Method m
+	ADDSP #1
+	LOAD 6(GB), R2
+	STORE R2, 0(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #1
+	LOAD R0, R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 1(R2), R2
+	LOAD R2, R1
+	WINT
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize A's fields
+init.A:
+	TSTO #0
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	RTS
+code.A.m:
+	TSTO #1
+	BOV stack_overflow_error
+	PUSH R2
+	LOAD #null, R2
+	LOAD -2(LB), R2
+	LOAD R2, R0
+	BRA end.A.m
+	WSTR """Error: exit from method A.m without return."""
+	WNL
+	ERROR
+end.A.m:
+	POP R2
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+dereferencing.null:
+	WSTR """Error: dereferencing null"""
+	WNL
+	ERROR
+full_stack:
+	WSTR """Error : The Stack is Full"""
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

@@ -1,0 +1,79 @@
+; start main program
+	TSTO #11
+	BOV stack_overflow_error
+	ADDSP #6
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of Batman method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+	LOAD code.Batman.talk, R0
+	STORE R0, 5(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	NEW #1, R2
+	BOV full_stack
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Batman
+	POP R2
+	STORE R2, 6(GB)
+; Beginning of main instructions:
+; Call Method talk
+	ADDSP #3
+	LOAD 6(GB), R2
+	STORE R2, 0(SP)
+	LOAD #1, R2
+	STORE R2, -1(SP)
+	LOAD #1, R2
+	STORE R2, -2(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 2(R2)
+	SUBSP #3
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize Batman's fields
+init.Batman:
+	TSTO #0
+	BOV stack_overflow_error
+	RTS
+code.Batman.talk:
+	TSTO #0
+	BOV stack_overflow_error
+	WSTR "I am batman"
+	WNL
+end.Batman.talk:
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+dereferencing.null:
+	WSTR """Error: dereferencing null"""
+	WNL
+	ERROR
+full_stack:
+	WSTR """Error : The Stack is Full"""
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

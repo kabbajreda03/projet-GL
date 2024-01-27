@@ -1,0 +1,188 @@
+; start main program
+	TSTO #1
+	BOV stack_overflow_error
+	ADDSP #1
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+; Beginning of main instructions:
+	LOAD #0, R2
+	ADD #0, R2
+	LOAD #0, R3
+	ADD #0, R3
+	LOAD #0, R4
+	ADD #0, R4
+	LOAD #0, R5
+	ADD #0, R5
+	LOAD #0, R6
+	ADD #0, R6
+	LOAD #0, R7
+	ADD #0, R7
+	LOAD #0, R8
+	ADD #0, R8
+	LOAD #0, R9
+	ADD #0, R9
+	LOAD #0, R10
+	ADD #0, R10
+	LOAD #0, R11
+	ADD #0, R11
+	LOAD #0, R12
+	ADD #0, R12
+	LOAD #0, R13
+	ADD #0, R13
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	PUSH R14
+	LOAD #0, R14
+	ADD #0, R14
+	LOAD #0, R15
+	ADD #0, R15
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	POP R14
+	ADD R14, R15
+	LOAD R15, R14
+	ADD R13, R14
+	LOAD R14, R13
+	ADD R12, R13
+	LOAD R13, R12
+	ADD R11, R12
+	LOAD R12, R11
+	ADD R10, R11
+	LOAD R11, R10
+	ADD R9, R10
+	LOAD R10, R9
+	ADD R8, R9
+	LOAD R9, R8
+	ADD R7, R8
+	LOAD R8, R7
+	ADD R6, R7
+	LOAD R7, R6
+	ADD R5, R6
+	LOAD R6, R5
+	ADD R4, R5
+	LOAD R5, R4
+	ADD R3, R4
+	LOAD R4, R3
+	ADD R2, R3
+	LOAD R3, R2
+	STORE R2, 1(GB)
+	LOAD 1(GB), R2
+	LOAD R2, R1
+	WINT
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

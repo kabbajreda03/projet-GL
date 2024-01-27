@@ -1,0 +1,143 @@
+; start main program
+	TSTO #12
+	BOV stack_overflow_error
+	ADDSP #8
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of Queen method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+; construction of King method
+	LEA 1(GB), R0
+	STORE R0, 5(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 6(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	NEW #2, R2
+	BOV full_stack
+	LEA 3(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.Queen
+	POP R2
+	STORE R2, 7(GB)
+	NEW #2, R2
+	BOV full_stack
+	LEA 5(GB), R0
+	STORE R0, 0(R2)
+	PUSH R2
+	BSR init.King
+	POP R2
+	STORE R2, 8(GB)
+; Beginning of main instructions:
+; Call Method equals
+	ADDSP #2
+	LOAD 8(GB), R2
+	STORE R2, 0(SP)
+	LOAD 7(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 1(R2)
+	SUBSP #2
+	LOAD R0, R2
+	CMP #0, R2
+	BEQ else_branch_0
+if_branch_0:
+	WSTR "Kings and queens are equal"
+	WNL
+	BRA end_of_if_0
+else_branch_0:
+; Call Method equals
+	ADDSP #2
+	LOAD 7(GB), R2
+	STORE R2, 0(SP)
+	LOAD 8(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 1(R2)
+	SUBSP #2
+	LOAD R0, R2
+	CMP #0, R2
+	BEQ else_branch_1
+if_branch_1:
+	WSTR "Queens and kings are equal"
+	WNL
+	BRA end_of_if_1
+else_branch_1:
+; Call Method equals
+	ADDSP #2
+	LOAD 7(GB), R2
+	STORE R2, 0(SP)
+	LOAD 7(GB), R2
+	STORE R2, -1(SP)
+	LOAD 0(SP), R2
+	CMP #null, R2
+	BEQ dereferencing.null
+	LOAD 0(R2), R2
+	BSR 1(R2)
+	SUBSP #2
+	LOAD R0, R2
+	CMP #0, R2
+	BEQ else_branch_2
+if_branch_2:
+	WSTR "Queen is queen"
+	WNL
+	BRA end_of_if_2
+else_branch_2:
+end_of_if_2:
+end_of_if_1:
+end_of_if_0:
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize Queen's fields
+init.Queen:
+	TSTO #0
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	RTS
+; Initialize King's fields
+init.King:
+	TSTO #0
+	BOV stack_overflow_error
+	LOAD #0, R0
+	LOAD -2(LB), R1
+	STORE R0, 1(R1)
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+dereferencing.null:
+	WSTR """Error: dereferencing null"""
+	WNL
+	ERROR
+full_stack:
+	WSTR """Error : The Stack is Full"""
+	WNL
+	ERROR
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

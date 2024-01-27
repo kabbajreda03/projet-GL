@@ -1,0 +1,4 @@
+{
+    float f = 4.6e38;
+    float f2 = f+40;
+}

@@ -1,0 +1,14 @@
+fr/ensimag/deca/context/ManualTestContext.class
+fr/ensimag/deca/tools/SymbolTest.class
+fr/ensimag/deca/context/TestPlusPlain.class
+fr/ensimag/deca/context/TestMinus.class
+fr/ensimag/deca/syntax/ManualTestLex.class
+fr/ensimag/deca/context/TestPlusAdvanced.class
+fr/ensimag/deca/context/TestPlusWithoutMock$DummyIntExpression.class
+fr/ensimag/deca/context/TestMult.class
+fr/ensimag/deca/tools/ManualTestSymbol.class
+fr/ensimag/deca/context/TestPlusWithoutMock.class
+fr/ensimag/deca/context/TestDivision.class
+fr/ensimag/deca/context/TestConvFloat.class
+fr/ensimag/deca/syntax/ManualTestSynt.class
+fr/ensimag/deca/tree/ManualTestInitialGencode.class

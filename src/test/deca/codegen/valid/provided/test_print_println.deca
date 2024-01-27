@@ -1,0 +1,6 @@
+// Tester l'implmentation de print et println
+{
+    print("This Deca needs ");
+    println("more sugar");
+
+}

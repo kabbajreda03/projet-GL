@@ -1,0 +1,92 @@
+; start main program
+	TSTO #5
+	BOV stack_overflow_error
+	ADDSP #4
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	LOAD #10, R2
+	STORE R2, 1(GB)
+	LOAD #0x1.666666p2, R2
+	STORE R2, 2(GB)
+	FLOAT 1(GB), R2
+	ADD 2(GB), R2
+	BOV overflow
+	STORE R2, 3(GB)
+	LOAD #1, R2
+	STORE R2, 4(GB)
+; Beginning of main instructions:
+	LOAD 3(GB), R2
+	LOAD #0x1.ecccccp3, R3
+	CMP R3, R2
+	SLT R2
+	CMP #0, R2
+	BEQ else_branch_0
+if_branch_0:
+	LOAD 3(GB), R2
+	LOAD R2, R1
+	WFLOAT
+	WSTR " is less than 15"
+	BRA end_of_if_0
+else_branch_0:
+	LOAD 3(GB), R2
+	LOAD #0x1.ecccccp3, R3
+	CMP R3, R2
+	SGT R2
+	CMP #0, R2
+	BEQ else_branch_1
+if_branch_1:
+	LOAD 3(GB), R2
+	LOAD R2, R1
+	WFLOAT
+	WSTR " is greater than 15"
+	BRA end_of_if_1
+else_branch_1:
+end_of_if_1:
+end_of_if_0:
+while_0:
+	LOAD 4(GB), R2
+	LOAD #1, R3
+	CMP R3, R2
+	SEQ R2
+	CMP #0, R2
+	BEQ end_of_while_0
+	LOAD 1(GB), R2
+	ADD #1, R2
+	STORE R2, 1(GB)
+	LOAD 1(GB), R2
+	LOAD #20, R3
+	CMP R3, R2
+	SGT R2
+	CMP #0, R2
+	BEQ else_branch_2
+if_branch_2:
+	LOAD #0, R2
+	STORE R2, 4(GB)
+	BRA end_of_if_2
+else_branch_2:
+end_of_if_2:
+	BRA while_0
+end_of_while_0:
+	LOAD 1(GB), R2
+	LOAD R2, R1
+	WINT
+	WNL
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+code.Object.equals:
+	RTS
+stack_overflow_error:
+	WSTR "Error: Stack Overflow"
+	WNL
+	ERROR
+overflow:
+	WSTR "Error: Overflow"
+	WNL
+	ERROR
+; end main program

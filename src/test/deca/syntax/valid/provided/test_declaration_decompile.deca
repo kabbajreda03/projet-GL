@@ -1,0 +1,7 @@
+// Tester la decompilation de la declaration de variables
+
+{
+    int a;
+    float b;
+    boolean c;
+}

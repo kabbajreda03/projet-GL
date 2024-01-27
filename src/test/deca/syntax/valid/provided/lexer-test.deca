@@ -1,0 +1,27 @@
+class A{
+    protected int x;
+    float f;
+
+    int getX(){
+        return x;
+    }
+
+    void setX(int b){
+        x=b;
+    }
+
+    float returnfSquare(){
+        return f*f;
+    }
+}
+
+class B extends A{
+    protected int y;
+}
+
+
+{
+    A a = new A();
+    A b = new B();
+
+}

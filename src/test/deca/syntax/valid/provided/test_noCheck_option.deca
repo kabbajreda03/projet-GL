@@ -1,0 +1,8 @@
+{
+    int a=9;
+    float f = 3.4e38;
+    float f2;
+    f2=f+3;
+    a=a/0;
+    println("no check");
+}

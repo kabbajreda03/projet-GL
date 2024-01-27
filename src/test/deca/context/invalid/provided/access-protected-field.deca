@@ -1,0 +1,15 @@
+class A{
+    protected int x;
+    int y;
+
+    int getX(){
+        return x;
+    }
+
+}
+
+
+{
+    A a = new A();
+    println(a.x);
+}

@@ -1,0 +1,49 @@
+; start main program
+	TSTO #6
+	BOV stack_overflow_error
+	ADDSP #6
+; --------------------------------------------------
+;          Construction of Method Tables            
+; --------------------------------------------------
+; construction of object method
+	LOAD #null, R0
+	STORE R0, 1(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 2(GB)
+; construction of Father method
+	LEA 1(GB), R0
+	STORE R0, 3(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 4(GB)
+; construction of Mother method
+	LEA 1(GB), R0
+	STORE R0, 5(GB)
+	LOAD code.Object.equals, R0
+	STORE R0, 6(GB)
+; --------------------------------------------------
+;                   Main program                    
+; --------------------------------------------------
+	HALT
+; --------------------------------------------------
+;                   Constructors                    
+; --------------------------------------------------
+; Initialize Father's fields
+init.Father:
+	TSTO #0
+	BOV stack_overflow_error
+	RTS
+; Initialize Mother's fields
+init.Mother:
+	TSTO #0
+	BOV stack_overflow_error
+	RTS
+code.Object.equals:
+	LOAD -2(LB), R0
+	CMP -3(LB), R0
+	SEQ R0
+	RTS
+stack_overflow_error:
+	WSTR """Error: Stack Overflow"""
+	WNL
+	ERROR
+; end main program

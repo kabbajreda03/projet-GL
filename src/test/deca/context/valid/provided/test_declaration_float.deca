@@ -1,0 +1,7 @@
+// Tester la declaration des types primitives 
+// Verifier : "definition : variable defined at [<lig>,<col>] , type = <type>"
+
+{
+    float f;           // lig:5 col:8 type: float
+
+}

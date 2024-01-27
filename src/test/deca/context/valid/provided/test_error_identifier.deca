@@ -1,0 +1,4 @@
+{
+    String a = "Jihad";
+    println(a);
+}

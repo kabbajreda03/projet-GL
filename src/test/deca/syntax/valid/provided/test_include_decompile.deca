@@ -1,0 +1,4 @@
+// affichage en flottant de la moitié du carré d'un entier
+{
+ println("0.5*(x*x)") ;
+}
